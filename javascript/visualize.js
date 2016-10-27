@@ -6,15 +6,19 @@ const MIN = 1;
 const INNER_HEIGHT = HEIGHT - 2*MARGIN;
 const INNER_WIDTH = WIDTH - 2*MARGIN;
 
-var _g,_yScale,_xScale,_svg;
+var _g,_yScale,_xScale,_svg,_line,_rect;
 
 var randomData = [];
 for (var i = 0; i < 10; i++) {
 	randomData.push(_.random(MIN,MAX));
 }
 
-var createChart = function(){
-	_svg = d3.select('.container').append('svg')
+line = d3.line()
+		.x(function(d,i) { return _xScale(i);})
+		.y(function(d){ return _yScale(d);})
+
+var createChart = function(chartId){
+	_svg = d3.select('#'+chartId).append('svg')
 			.attr('width', WIDTH)
 			.attr('height', HEIGHT)
 			.classed('svg',true);
@@ -41,40 +45,49 @@ var createChart = function(){
 
 	_svg.append('g')
 		.attr('transform','translate('+MARGIN+', '+MARGIN+')')
-		.attr('class','bars');
+		.classed(chartId,true);
 }
 
-var loadBarChart = function(r){
-	var rect = _svg.select('.bars')
+var loadBarChart = function(r,id){
+	_rect = d3.select('.'+id)
 		.selectAll('rect')
 		.data(r);
 
-	rect.enter()
+	_rect.enter()
 		.append('rect')
 		.attr('width',INNER_WIDTH/(10*2));
+}
 
-	rect.attr('x',function(d,i) { return _xScale(i);})
+var updateBarChart = function(r,id){
+	_rect.attr('x',function(d,i) { return _xScale(i);})
 		.attr('y',function(d){return _yScale(d);})
 		.attr('height',function(d){return INNER_HEIGHT-_yScale(d);});
 
-	rect.selectAll('rect').exit().remove();
+	_rect.selectAll('rect').exit().remove();
 }
 
-var loadLineGraph = function(){
-	var path = g.append("path");
+var createLineChart = function(r,id){
+	var path = d3.select('.'+id).append("path");
+	path.attr('d',line(r));
+}
 
-	var line = d3.line()
-		.x(function(d,i) { return _xScale(i);})
-		.y(function(d){ return HEIGHT-_yScale(d);})
-
-	path.attr("d",line(r));
+var updateLineGraph = function(r,id){
+	d3.select('.'+id)
+		.select('path')
+		.attr('d',line(r));
 }
 
 var changeChart = function(){
 	randomData.shift();
 	randomData.push(_.random(MIN,MAX));
-	loadBarChart(randomData);
+	loadBarChart(randomData,'bar_graph');
+	updateBarChart(randomData,'bar_graph');
+	updateLineGraph(randomData,'line_chart');
 };
 
-window.onLoad = createChart();
-setInterval(changeChart,1000);
+window.onload = function(){
+	createChart('bar_graph');
+	createChart('line_chart');
+	createLineChart(randomData,'line_chart');
+}
+setInterval(changeChart,400);
