@@ -1,0 +1,12 @@
+.svg{
+	background-color: grey;
+}
+
+path{
+	fill: none;
+	stroke: black;
+}
+
+rect{
+	fill: black;
+}
