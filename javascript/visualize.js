@@ -41,27 +41,25 @@ var createChart = function(){
 		.attr('transform', 'translate('+(MARGIN)+', '+ (MARGIN) +')')
 		.call(yAxis);
 
+	_svg.append('g')
+		.attr('transform','translate('+MARGIN+', '+MARGIN+')')
+		.attr('class','bars');
 }
 
 var loadBarChart = function(r){
-	d3.select('.bars').remove();
-
-	g = _svg.append('g')
-		.attr('transform','translate('+MARGIN+', '+MARGIN+')')
-		.classed('bars',true);
-
-	var rect = g.selectAll('rect')
+	var rect = _svg.select('.bars')
+		.selectAll('rect')
 		.data(r);
 
-	rect.enter().append('rect')
-		.attr('x',function(d,i) { return _xScale(i);})
-		.attr('y',function(d){return _yScale(d);})
-		.attr('height',function(d){return INNER_HEIGHT-_yScale(d);})
-		.attr('width',INNER_WIDTH/(10*2))
-		.append('title')
-		.text(function(d){return d;});
+	rect.enter()
+		.append('rect')
+		.attr('width',INNER_WIDTH/(10*2));
 
-	g.selectAll('rect').exit().remove();
+	rect.attr('x',function(d,i) { return _xScale(i);})
+		.attr('y',function(d){return _yScale(d);})
+		.attr('height',function(d){return INNER_HEIGHT-_yScale(d);});
+
+	rect.selectAll('rect').exit().remove();
 }
 
 var loadLineGraph = function(){
@@ -69,9 +67,7 @@ var loadLineGraph = function(){
 
 	var line = d3.line()
 		.x(function(d,i) { return _xScale(i);})
-		.y(function(d){
-			console.log(d,"----1");
-			return HEIGHT-_yScale(d);})
+		.y(function(d){ return HEIGHT-_yScale(d);})
 
 	path.attr("d",line(r));
 }
