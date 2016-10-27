@@ -1,6 +1,6 @@
 const MARGIN = 30;
-const HEIGHT = 700;
-const WIDTH = 1200;
+const HEIGHT = 400;
+const WIDTH = 600;
 const MAX = 100;
 const MIN = 1;
 const INNER_HEIGHT = HEIGHT - 2*MARGIN;
@@ -44,32 +44,6 @@ var createChart = function(){
 }
 
 var loadBarChart = function(r){
-	// d3.select('svg').remove();
-	// var svg = d3.select('.container').append('svg')
-	// 		.attr('width', WIDTH)
-	// 		.attr('height', HEIGHT)
-	// 		.classed('svg',true);
-
-
-	// var xScale = d3.scaleLinear()
-	// 	.domain([0,10])
-	// 	.range([0,WIDTH - 2*MARGIN]);
-
-	// var yScale = d3.scaleLinear()
-	// 	.domain([0,100])
-	// 	.range([HEIGHT - 2*MARGIN,0]);
-
-	// var xAxis = d3.axisBottom(xScale).ticks(10);
-	// var yAxis = d3.axisLeft(yScale).ticks(10);
-
-	// svg.append('g')
-	// 	.attr('transform', 'translate('+MARGIN+', '+(HEIGHT - MARGIN)+')')
-	// 	.call(xAxis);
-
-	// svg.append('g')
-	// 	.attr('transform', 'translate('+(MARGIN)+', '+ (MARGIN) +')')
-	// 	.call(yAxis);
-
 	d3.select('.bars').remove();
 
 	g = _svg.append('g')
@@ -80,14 +54,12 @@ var loadBarChart = function(r){
 		.data(r);
 
 	rect.enter().append('rect')
-		.attr('x',function(d,i) { return _xScale(i+1);})
+		.attr('x',function(d,i) { return _xScale(i);})
 		.attr('y',function(d){return _yScale(d);})
 		.attr('height',function(d){return INNER_HEIGHT-_yScale(d);})
-		.attr('width',10)
+		.attr('width',INNER_WIDTH/(10*2))
 		.append('title')
 		.text(function(d){return d;});
-
-	console.log(r);
 
 	g.selectAll('rect').exit().remove();
 }
