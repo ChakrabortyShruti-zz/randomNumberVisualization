@@ -14,8 +14,6 @@ for (var i = 0; i < 10; i++) {
 }
 
 var createChart = function(){
-	d3.select('svg').remove();
-
 	_svg = d3.select('.container').append('svg')
 			.attr('width', WIDTH)
 			.attr('height', HEIGHT)
