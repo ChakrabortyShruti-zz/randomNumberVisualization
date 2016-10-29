@@ -8,8 +8,14 @@ rect{
 }
 
 .bar{
-	/*background-color: steelblue;*/
 	padding-left: 2px; 
 	margin: 2px;
-	/*color:white;*/
+	border-radius: 10px;
+}
+
+.legend{
+	display: inline-block;
+	margin: 1px;
+	text-align: center;
+	border-radius: 10px;
 }

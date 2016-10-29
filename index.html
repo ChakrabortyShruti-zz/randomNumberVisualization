@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Random number</title>
+	<title>Scores</title>
 	<link rel="stylesheet" type="text/css" href="./css/styleSheet.css">
 </head>
 <body>
-	<!-- <div id="bar_graph"></div> -->
-	<!-- <div id="line_chart"></div> -->
-	<div id="horizontal_bars"></div>
+	<div id="scores"></div>
+	<br>
+	Sort By:
+	<button onclick="sortChart('name')">name</button>
+	<button onclick="sortChart('subject')">subject</button>
+	<button onclick="sortChart('score')">score</button>
+	<br>
+	<div id="legends">Subjects : </div>
 	<script type="text/javascript" src="./javascript/d3.v4.min.js"></script>
 	<script type="text/javascript" src="./javascript/lodash.4.16.4.min.js"></script>
-	<script type="text/javascript" src="./javascript/horizontalBar.js"></script>
+	<script type="text/javascript" src="./javascript/scores.js"></script>
 </body>
 </html>
