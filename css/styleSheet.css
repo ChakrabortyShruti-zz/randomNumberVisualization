@@ -6,3 +6,10 @@ path{
 rect{
 	fill: black;
 }
+
+.bar{
+	/*background-color: steelblue;*/
+	padding-left: 2px; 
+	margin: 2px;
+	/*color:white;*/
+}

@@ -72,9 +72,15 @@ var createLineChart = function(r,id){
 }
 
 var updateLineGraph = function(r,id){
+	var t = d3.transition()
+    	.duration(100)
+    	.ease(d3.easeLinear);
+
 	d3.select('.'+id)
 		.select('path')
-		.attr('d',line(r));
+		.attr('d',line(r))
+		.transition(t)
+		.style("stroke", "red");
 }
 
 var changeChart = function(){
