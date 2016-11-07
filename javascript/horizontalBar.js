@@ -23,6 +23,10 @@ var createBars = function(r){
 		.style('background-color',function(d){return d3.rgb(10,40,50+d*2)})
 		.text(function(d){return d;});
 
+	enteredList.select('bar')
+		.transition()
+		.style('',20px)
+
 	_divs.exit().remove();
 }
 

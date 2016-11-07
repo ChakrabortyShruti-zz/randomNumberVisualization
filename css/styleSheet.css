@@ -19,3 +19,22 @@ rect{
 	text-align: center;
 	border-radius: 10px;
 }
+
+.number{
+	display:inline-block;
+	border-style:groove;
+	border-width:thin;
+	width: 70px;
+	margin: 1px;
+
+}
+
+.data,.tags {
+	display: inline-block;
+}
+
+.tag{
+	border-style:groove;
+	border-width:thin;
+	margin: 2px;
+}
