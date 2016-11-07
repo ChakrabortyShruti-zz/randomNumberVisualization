@@ -37,4 +37,5 @@ rect{
 	border-style:groove;
 	border-width:thin;
 	margin: 2px;
+	font-weight: bold;
 }

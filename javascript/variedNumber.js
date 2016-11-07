@@ -9,15 +9,16 @@ var div = d3.select('#numbers')
 	.attr('height', HEIGHT)
 	.classed('container',true);
 
-var width_scale = d3.scaleLinear().domain([0,10]).range([12,120]);
-var height_scale = d3.scaleLinear().domain([0,10]).range([30,180]);
+var font_scale = d3.scaleLinear()
+	.domain([0,10])
+	.range(['italic bold 12px/30px Georgia, serif','italic bold 120px/180px Georgia, serif']);
 
 div.selectAll('div')
 	.data(numbers)
 	.enter()
 	.append('div')
 	.text(function(d){return d})
-	.style('font',function(d){return 'italic bold '+width_scale(d)+'px/'+height_scale(d)+'px Georgia'})
+	.style('font',function(d){return font_scale(d)})
 	.style('float','left')
 	.style('border-style','groove')
 	.style('border-width','thin')
