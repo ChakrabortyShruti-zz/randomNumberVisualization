@@ -20,22 +20,14 @@ rect{
 	border-radius: 10px;
 }
 
-.number{
+.operationValue {
 	display:inline-block;
 	border-style:groove;
 	border-width:thin;
-	width: 70px;
+	width: 80px;
 	margin: 1px;
-
 }
 
-.data,.tags {
-	display: inline-block;
-}
-
-.tag{
-	border-style:groove;
-	border-width:thin;
-	margin: 2px;
+.title{
 	font-weight: bold;
 }
